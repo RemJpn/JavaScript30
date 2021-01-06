@@ -21,6 +21,23 @@
   <img src="https://source.unsplash.com/7bwQXzbF6KE/800x500">
 
   <style>
+    :root {
+      --base:#ffc600;
+      --spacing:10px;
+      --blur:10px;
+    }
+
+    .hl {
+      color: var(--base);
+    }
+
+    img {
+      /*border: var(--spacing) solid var(--base);*/
+      padding: var(--spacing);
+      background-color: var(--base);
+      filter: blur(var(--blur));
+    }
+
 
     /*
       misc styles, nothing to do with CSS variables
@@ -43,8 +60,23 @@
       width: 100px;
     }
   </style>
-
   <script>
+    const inputs = document.querySelectorAll('.controls input');
+
+    const handleUpdate = (event) => {
+      const suffix = event.target.dataset.sizing || '';
+      document.documentElement.style.setProperty(`--${event.target.name}`, event.target.value + suffix)
+    }
+    // function handleUpdate() {
+    //   const suffix = this.dataset.sizing || '';
+    //   document.documentElement.style.setProperty(`--${this.name}`, this.value + suffix)
+    // }
+
+    inputs.forEach(input => input.addEventListener('change', handleUpdate));
+    inputs.forEach(input => input.addEventListener('mousemove', handleUpdate));
+
+
+
   </script>
 
 </body>

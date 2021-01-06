@@ -18,28 +18,65 @@
     }
 
     // Regular
+    console.log('Hello');
 
     // Interpolated
+    console.log('Hello %s, how are you today?', 'Remi');
+    const user = 'Remi';
+    console.log(`Hello ${user}, how are you today?`);
 
     // Styled
+    console.log('%c I am some great text', 'font-size:50px; color:#BADA55;text-shadow:0 5px 5px rgba(100,50,34,1)');
 
     // warning!
-
+    console.warn('pay attention!');
     // Error :|
-
+    console.error('TOO BAD!');
     // Info
+    console.info('I here no one reads these comments');
 
     // Testing
+    console.assert(user === "Pascal", "Wrong user!");
 
     // clearing
+    // console.clear();
 
     // Viewing DOM Elements
+    const p = document.querySelector('p');
+    console.log(p);
+    console.dir(p);
 
     // Grouping together
+    dogs.forEach(dog => {
+      console.groupCollapsed(`${dog.name}`);
+      console.log(`This is ${dog.name}`);
+      console.log(`${dog.name} is ${dog.age} years old`);
+      console.log(`${dog.name} is ${dog.age * 7} dog years old`);
+      console.groupEnd(`${dog.name}`);
+    });
 
     // counting
+    console.count('Wes');
+    console.count('Wes');
+    console.count('Steve');
+    console.count('Steve');
+    console.count('Wes');
+    console.count('Steve');
+    console.count('Wes');
+    console.count('Steve');
+    console.count('Steve');
+    console.count('Steve');
+    console.count('Steve');
+    console.count('Steve');
 
     // timing
+    console.time('fetching data');
+    fetch('https://api.github.com/users/wesbos')
+      .then(data => data.json())
+      .then(data => {
+        console.timeEnd('fetching data');
+        console.log(data);
+      });
 
   </script>
 </body>

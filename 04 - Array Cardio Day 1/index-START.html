@@ -34,31 +34,59 @@
       'Berne, Eric', 'Berra, Yogi', 'Berry, Wendell', 'Bevan, Aneurin', 'Ben-Gurion, David', 'Bevel, Ken', 'Biden, Joseph', 'Bennington, Chester', 'Bierce, Ambrose',
       'Billings, Josh', 'Birrell, Augustine', 'Blair, Tony', 'Beecher, Henry', 'Biondo, Frank'
     ];
-    
+
     // Array.prototype.filter()
     // 1. Filter the list of inventors for those who were born in the 1500's
+    const exo1_result = inventors.filter(inventor => (Math.floor(inventor.year/100) == 15));
+    console.table(exo1_result);
 
     // Array.prototype.map()
     // 2. Give us an array of the inventors first and last names
+    const exo2_result = inventors.map(inventor => `${inventor.first} ${inventor.last}`);
+    console.table(exo2_result);
 
     // Array.prototype.sort()
     // 3. Sort the inventors by birthdate, oldest to youngest
+    const exo3_result = [...inventors]
+    exo3_result.sort((a, b) => a.year - b.year)
+    console.table(exo3_result)
 
     // Array.prototype.reduce()
     // 4. How many years did all the inventors live all together?
+    const exo4_result = inventors.reduce(( acc, cur ) => acc + cur.passed - cur.year , 0);
+    console.log(exo4_result);
 
     // 5. Sort the inventors by years lived
+    const exo5_result = [...inventors]
+    exo5_result.sort((a, b) => - (a.passed - a.year) + (b.passed - b.year))
+    console.table(exo5_result)
 
     // 6. create a list of Boulevards in Paris that contain 'de' anywhere in the name
     // https://en.wikipedia.org/wiki/Category:Boulevards_in_Paris
-
+    // FROM THE CONSOLE
+    // const all_lines = document.querySelectorAll('.mw-category li');
+    // const de_array = [...all_lines].filter(line => line.innerText.includes('de'));
+    // const exo6_result = de_array.map(x => x.innerText);
 
     // 7. sort Exercise
     // Sort the people alphabetically by last name
+    const exo7_result = [...people];
+
+    exo7_result.sort((lastOne, nextOne) => {
+      const [aLast, aFirst] = lastOne.split(', ');
+      const [bLast, bFirst] = nextOne.split(', ');
+      return aLast > bLast ? 1 : -1;
+    });
+    console.log(exo7_result);
 
     // 8. Reduce Exercise
     // Sum up the instances of each of these
     const data = ['car', 'car', 'truck', 'truck', 'bike', 'walk', 'car', 'van', 'bike', 'walk', 'car', 'van', 'car', 'truck' ];
+    const exo8_result = data.reduce((result_object, instance) => {
+      result_object[instance] ? result_object[instance] += 1 : result_object[instance] = 1;
+      return result_object;
+    }, {});
+    console.log(exo8_result);
 
   </script>
 </body>

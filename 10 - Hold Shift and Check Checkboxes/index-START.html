@@ -96,6 +96,51 @@
   </div>
 
 <script>
+  const checkboxes = document.querySelectorAll('.inbox input[type="checkbox"]');
+  let lastChecked;
+
+  const checkboxClicked = (event) => {
+    console.log(event);
+    let inBetween = false;
+    if (event.shiftKey && event.currentTarget.checked) {
+
+      checkboxes.forEach( checkbox => {
+        if (checkbox == event.currentTarget || checkbox == lastChecked) {
+          inBetween = !inBetween;
+        }
+
+        if (inBetween) {
+          checkbox.checked = true;
+        }
+      });
+    }
+    lastChecked = event.currentTarget;
+  }
+
+  checkboxes.forEach( checkbox => checkbox.addEventListener('click', checkboxClicked));
+
+
+  // MY VERSION
+
+  // const items = document.querySelectorAll('.item');
+  // const items_array = [...items];
+  // const checkboxes = document.querySelectorAll('.inbox input[type="checkbox"]');
+  // let firstCB = null;
+
+  // const checkboxClicked = (event) => {
+  //   console.log(event);
+  //   if (event.shiftKey && firstCB) {
+  //     const secondCB = items_array.findIndex((element) => element == event.currentTarget.parentNode);
+  //     for (i = Math.min(firstCB,secondCB); i <= Math.max(firstCB,secondCB); i++ ) {
+  //       items[i].querySelector('input').checked = items[firstCB].querySelector('input').checked;
+  //     }
+  //   } else {
+  //     firstCB = items_array.findIndex((element) => element == event.currentTarget.parentNode);
+  //   }
+  // }
+
+  // checkboxes.forEach( checkbox => checkbox.addEventListener('click', checkboxClicked));
+
 </script>
 </body>
 </html>
