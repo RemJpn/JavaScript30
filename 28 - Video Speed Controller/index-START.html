@@ -15,6 +15,30 @@
   </div>
 
 <script>
+  const speed = document.querySelector('.speed');
+  const speedBar = document.querySelector('.speed-bar');
+  const viewer = document.querySelector('.flex');
+
+  const changeSpeed = (e) => {
+    const percent = e.offsetY / speed.offsetHeight;
+
+    // Wes' way
+    // const y = e.pageY - e.currentTarget.offsetTop;
+    // const percent2 = y / speed.offsetHeight;
+    // console.log(percent, percent2);
+
+    const min = 0.4;
+    const max = 4;
+    const height = Math.round(percent * 100) + '%';
+    const playbackRate = percent * (max - min) + min;
+
+    speedBar.style.height = height;
+    speedBar.innerText = `${playbackRate.toFixed(2)}x`;
+    viewer['playbackRate'] = playbackRate;
+  }
+
+  speed.addEventListener('mousemove', changeSpeed);
+
 </script>
 </body>
 </html>
